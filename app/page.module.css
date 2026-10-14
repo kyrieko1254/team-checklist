@@ -152,10 +152,11 @@ summary.groupTitle {
   list-style: none;
 }
 
+/* 한 줄: 체크박스 | 업무명 | 담당자 | 마감일 | 삭제 */
 .taskItem {
   display: grid;
-  grid-template-columns: 1fr auto auto;
-  gap: 16px;
+  grid-template-columns: auto 1fr auto auto auto;
+  gap: 12px;
   align-items: center;
   padding: 10px 4px;
   border-top: 1px solid var(--border);
@@ -163,6 +164,13 @@ summary.groupTitle {
 
 .taskItem:first-child {
   border-top: none;
+}
+
+.checkbox {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+  cursor: pointer;
 }
 
 .taskTitle {
@@ -177,14 +185,63 @@ summary.groupTitle {
   font-variant-numeric: tabular-nums;
 }
 
-/* 좁은 화면: 업무명 아래에 담당자·마감일 */
+/* 완료한 업무: 취소선과 흐린 색 */
+.doneItem .taskTitle {
+  text-decoration: line-through;
+}
+
+.doneItem .taskTitle,
+.doneItem .taskAssignee,
+.doneItem .taskDue {
+  color: var(--muted);
+  opacity: 0.7;
+}
+
+/* 삭제 버튼과 삭제 확인 */
+.textButton {
+  padding: 4px 8px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.textButton:hover {
+  background: var(--border);
+  color: var(--foreground);
+}
+
+.dangerButton {
+  padding: 4px 10px;
+  border: none;
+  border-radius: 6px;
+  background: var(--danger);
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.confirmBox {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: var(--danger);
+}
+
+/* 좁은 화면: 첫 줄에 체크박스·업무명, 둘째 줄에 담당자·마감일·삭제 */
 @media (max-width: 480px) {
   .taskItem {
-    grid-template-columns: 1fr auto;
+    grid-template-columns: auto 1fr auto auto;
     gap: 2px 12px;
   }
 
   .taskTitle {
-    grid-column: 1 / -1;
+    grid-column: 2 / -1;
+  }
+
+  .taskAssignee {
+    grid-column: 2;
   }
 }

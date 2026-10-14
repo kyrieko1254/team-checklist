@@ -43,11 +43,20 @@ export default function Checklist() {
     setTasks([...tasks, newTask]);
   }
 
+  // 완료 ↔ 미완료 전환
+  function toggleTask(taskId) {
+    setTasks(tasks.map((task) => (task.id === taskId ? { ...task, isDone: !task.isDone } : task)));
+  }
+
+  function deleteTask(taskId) {
+    setTasks(tasks.filter((task) => task.id !== taskId));
+  }
+
   return (
     <>
       <TeamMembers members={members} onAdd={addMember} onDelete={deleteMember} />
       <TaskForm members={members} onAdd={addTask} />
-      <TaskList tasks={tasks} members={members} />
+      <TaskList tasks={tasks} members={members} onToggle={toggleTask} onDelete={deleteTask} />
     </>
   );
 }
