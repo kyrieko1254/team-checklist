@@ -115,6 +115,38 @@
   color: var(--danger);
 }
 
+/* 업무 묶음 (지난 마감 / 이번 주 / 다음 주 이후) */
+.group + .group {
+  margin-top: 20px;
+}
+
+.groupTitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+summary.groupTitle {
+  cursor: pointer;
+  color: var(--muted);
+}
+
+/* 지난 마감: 빨간색 강조 */
+.overdueTitle {
+  color: var(--danger);
+}
+
+.overdueItem {
+  border-left: 3px solid var(--danger);
+  padding-left: 10px;
+  background: color-mix(in srgb, var(--danger) 7%, transparent);
+}
+
+.overdueItem .taskDue {
+  color: var(--danger);
+  font-weight: 600;
+}
+
 /* 업무 목록 */
 .taskList {
   list-style: none;
